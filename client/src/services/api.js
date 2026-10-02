@@ -1,4 +1,5 @@
-const API_BASE = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '');
+const configuredApiUrl = (import.meta.env.VITE_API_URL || '').replace(/\/+$/, '');
+const API_BASE = configuredApiUrl.endsWith('/api') ? configuredApiUrl : `${configuredApiUrl}/api`;
 
 async function request(url, options = {}) {
   const token = sessionStorage.getItem('codenovaAdminToken');
